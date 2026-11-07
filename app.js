@@ -12,6 +12,7 @@ document.querySelectorAll('.object-open').forEach(button=>button.addEventListene
  const dl=el('dl');[['年代',o.date],['材质',o.material],['尺寸 / 补充',o.size]].forEach(([k,v])=>{const row=el('div');row.append(el('dt',tr(k)),el('dd',v));dl.append(row)});
  content.append(dl,el('p',o.text,'body-text'),el('p',o.detail,'body-text'),el('p',o.note,'object-note'));
  const a=el('a',tr('馆刊原始记录 ↗'),'text-link');a.href=source;a.target='_blank';a.rel='noreferrer';content.append(a);
+ if(window.MUSEUM_MEDIA[o.id]?.src){const film=el('a',tr('观看 AI 影片 →'),'text-link');const prefix=({'en':'en-','ko':'ko-','ja':'ja-'})[document.documentElement.lang]||'';film.href=prefix+'films.html#'+o.id;content.append(film)}
  dialog.showModal();
 }));
 document.querySelector('.close').addEventListener('click',()=>dialog.close());
@@ -38,7 +39,9 @@ if(playlist){
   document.querySelector('#film-state').textContent=tr(url?'已发布':'待发布');
   playlist.querySelectorAll('button').forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.id===o.id)));
  };
- objects.forEach((o,i)=>{const b=el('button',null,'playlist-item');b.type='button';b.dataset.id=o.id;b.setAttribute('aria-pressed','false');const text=el('div');text.append(el('strong',o.name),el('small',tr(window.MUSEUM_MEDIA[o.id]?.src?'观看影片':'影像筹备中')));b.append(el('span',String(i+1).padStart(2,'0')),text);b.addEventListener('click',()=>select(o));playlist.append(b)});
+ objects.forEach((o,i)=>{const b=el('button',null,'playlist-item');b.type='button';b.dataset.id=o.id;b.setAttribute('aria-pressed','false');const text=el('div');text.append(el('strong',o.name),el('small',tr(window.MUSEUM_MEDIA[o.id]?.src?'观看影片':'影像筹备中')));b.append(el('span',String(i+1).padStart(2,'0')),text);b.addEventListener('click',()=>{select(o);history.replaceState(null,'','#'+o.id)});playlist.append(b)});
  player.addEventListener('error',()=>{player.hidden=true;waiting.hidden=false;document.querySelector('#film-state').textContent=tr('暂时无法播放');waiting.querySelector('p').textContent=tr('影片暂时无法加载，请稍后重试');});
- select(objects[0]);
+ const selectFromHash=()=>select(objects.find(o=>o.id===location.hash.slice(1))||objects[0]);
+ window.addEventListener('hashchange',selectFromHash);
+ selectFromHash();
 }
