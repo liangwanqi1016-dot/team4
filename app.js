@@ -46,3 +46,17 @@ if(playlist){
  window.addEventListener('hashchange',selectFromHash);
  selectFromHash();
 }
+
+
+// Reveal images as they enter view; respect the visitor's motion preference.
+if ('IntersectionObserver' in window && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+ const revealItems=document.querySelectorAll('.ai-film-card,.catalog-card,.exhibition-image,.ai-context-inner');
+ const revealObserver=new IntersectionObserver(entries=>{
+  entries.forEach(entry=>{if(entry.isIntersecting){entry.target.classList.remove('fx-pending');revealObserver.unobserve(entry.target)}});
+ },{threshold:0.08});
+ revealItems.forEach(item=>{
+  const rect=item.getBoundingClientRect();
+  item.classList.add('fx-reveal');
+  if(rect.top>window.innerHeight){item.classList.add('fx-pending');revealObserver.observe(item)}
+ });
+}
