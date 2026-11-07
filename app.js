@@ -40,7 +40,7 @@ if(playlist){
  const move=(index)=>{select(objects[index]);history.replaceState(null,'','#'+objects[index].id);playSelected()};
  previous.addEventListener('click',()=>{if(currentIndex>0)move(currentIndex-1)});
  next.addEventListener('click',()=>{if(currentIndex<objects.length-1)move(currentIndex+1)});
- tour.addEventListener('click',()=>{continuous=!continuous;updateControls();status.textContent=storyText.hint;if(continuous)playSelected()});
+ tour.addEventListener('click',()=>{continuous=!continuous;const tourUrl=new URL(location.href);if(continuous)tourUrl.searchParams.set('mode','tour');else tourUrl.searchParams.delete('mode');history.replaceState(null,'',tourUrl);updateControls();status.textContent=storyText.hint;if(continuous)playSelected()});
  play.addEventListener('click',playSelected);
  player.addEventListener('ended',()=>{if(continuous&&currentIndex<objects.length-1)move(currentIndex+1);else if(continuous){continuous=false;updateControls();status.textContent=storyText.done}});
  const select=(o)=>{
