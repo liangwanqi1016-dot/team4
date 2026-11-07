@@ -1,0 +1,1 @@
+window.uiText = {"馆藏选粹": "Collection", "年代": "Date", "材质": "Material", "尺寸 / 补充": "Dimensions / notes", "馆刊原始记录 ↗": "Original bulletin ↗", "影像筹备中": "In preparation", "观看影片": "Watch film", "已发布": "Available", "待发布": "Coming soon", "暂时无法播放": "Playback unavailable", "影片暂时无法加载，请稍后重试": "The film could not be loaded. Please try again later.", "中文字幕": "Chinese captions"};
