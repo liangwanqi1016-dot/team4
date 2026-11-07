@@ -1,4 +1,3 @@
-// AI-generated interpretive films supplied by the project creator.
 window.MUSEUM_MEDIA = {
   "hoeryong": {
     "src": "assets/videos/hoeryong.mp4",
@@ -23,16 +22,6 @@ window.MUSEUM_MEDIA = {
   "hanjun": {
     "src": "assets/videos/hanjun.mp4",
     "poster": "assets/videos/hanjun.jpg",
-    "captions": ""
-  },
-  "bernardaud-vase": {
-    "src": "",
-    "poster": "",
-    "captions": ""
-  },
-  "galle": {
-    "src": "",
-    "poster": "",
     "captions": ""
   }
 };
