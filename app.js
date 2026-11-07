@@ -19,10 +19,32 @@ document.querySelectorAll('.object-open').forEach(button=>button.addEventListene
 document.querySelector('.close').addEventListener('click',()=>dialog.close());
 dialog.addEventListener('click',e=>{if(e.target===dialog){const b=dialog.getBoundingClientRect();if(e.clientX<b.left||e.clientX>b.right||e.clientY<b.top||e.clientY>b.bottom)dialog.close()}});
 const filters=document.querySelectorAll('[data-filter]');filters.forEach(button=>button.addEventListener('click',()=>{filters.forEach(b=>b.setAttribute('aria-pressed',String(b===button)));let count=0;document.querySelectorAll('.catalog-card').forEach(card=>{card.hidden=button.dataset.filter!=='all'&&card.dataset.theme!==button.dataset.filter;if(!card.hidden)count++});document.querySelector('#filter-status').textContent=({'en':count+' objects','ko':count+'점 표시','ja':count+'件を表示'})[document.documentElement.lang] || `显示 ${count} 组藏品`;}));
+const storyLabels={"":{"tour":"▶ 连看五部影片","random":"✦ 随机开启一段故事","prev":"← 上一部","next":"下一部 →","on":"连续播放：开启","off":"连续播放：关闭","start":"播放这一部","done":"五段故事，已全部看完","hint":"开启后，当前影片结束将自动播放下一部。","themes":["走进泥土与火","发现瓷盘的艺术","回到旧日课堂","寻找石中的形态","读懂石函的记忆"]},"en-":{"tour":"▶ Watch all five","random":"✦ Surprise me with a story","prev":"← Previous","next":"Next →","on":"Continuous play: on","off":"Continuous play: off","start":"Play this film","done":"All five stories completed","hint":"When enabled, the next film plays after the current film ends.","themes":["Explore clay and fire","Discover porcelain art","Step into the classroom","Find a form in stone","Read a memory in stone"]},"ko-":{"tour":"▶ 다섯 영상 이어보기","random":"✦ 무작위 이야기 만나기","prev":"← 이전 영상","next":"다음 영상 →","on":"이어보기: 켜짐","off":"이어보기: 꺼짐","start":"이 영상 재생","done":"다섯 이야기를 모두 감상했습니다","hint":"켜두면 현재 영상이 끝난 후 다음 영상이 재생됩니다.","themes":["흙과 불의 세계로","접시의 예술 만나기","옛 교실로 돌아가기","돌 속의 형태 찾기","석함 속 기억 읽기"]},"ja-":{"tour":"▶ 五つの映像を続けて見る","random":"✦ 偶然の物語に出会う","prev":"← 前の映像","next":"次の映像 →","on":"連続再生：オン","off":"連続再生：オフ","start":"この映像を再生","done":"五つの物語を見終えました","hint":"オンにすると、映像の終了後に次の映像を再生します。","themes":["土と火の世界へ","皿の芸術を発見","昔の教室へ","石の中の形を探す","石函の記憶を読む"]}};
+const storyPrefix=({'en':'en-','ko':'ko-','ja':'ja-'})[document.documentElement.lang]||'';
+const storyText=storyLabels[storyPrefix];
+document.querySelectorAll('.story-surprise').forEach(link=>link.addEventListener('click',()=>{link.href=storyPrefix+'films.html#'+objects[Math.floor(Math.random()*objects.length)].id}));
 const playlist=document.querySelector('#playlist');
 if(playlist){
  const player=document.querySelector('#museum-video'),waiting=document.querySelector('#video-wait');
+ let currentIndex=0,continuous=new URLSearchParams(location.search).get('mode')==='tour';
+ const controls=el('div',null,'story-controls');
+ const counter=el('span',null,'story-counter');
+ const previous=el('button',storyText.prev,'story-step');previous.type='button';
+ const next=el('button',storyText.next,'story-step');next.type='button';
+ const tour=el('button',null,'story-toggle');tour.type='button';
+ const play=el('button',storyText.start,'story-play');play.type='button';
+ const status=el('p',storyText.hint,'story-hint');status.setAttribute('aria-live','polite');
+ controls.append(previous,counter,next,tour,play);player.closest('.video-frame').after(controls,status);
+ const updateControls=()=>{previous.disabled=currentIndex===0;next.disabled=currentIndex===objects.length-1;counter.textContent=String(currentIndex+1).padStart(2,'0')+' / '+String(objects.length).padStart(2,'0');tour.textContent=continuous?storyText.on:storyText.off;tour.setAttribute('aria-pressed',String(continuous))};
+ const playSelected=()=>{player.play().catch(()=>{status.textContent=storyText.start;play.focus()})};
+ const move=(index)=>{select(objects[index]);history.replaceState(null,'','#'+objects[index].id);playSelected()};
+ previous.addEventListener('click',()=>{if(currentIndex>0)move(currentIndex-1)});
+ next.addEventListener('click',()=>{if(currentIndex<objects.length-1)move(currentIndex+1)});
+ tour.addEventListener('click',()=>{continuous=!continuous;updateControls();status.textContent=storyText.hint;if(continuous)playSelected()});
+ play.addEventListener('click',playSelected);
+ player.addEventListener('ended',()=>{if(continuous&&currentIndex<objects.length-1)move(currentIndex+1);else if(continuous){continuous=false;updateControls();status.textContent=storyText.done}});
  const select=(o)=>{
+  currentIndex=objects.findIndex(item=>item.id===o.id);updateControls();status.textContent=storyText.hint;
   const t=themes.find(t=>t.id===o.theme),m=window.MUSEUM_MEDIA[o.id]||{};
   player.pause();player.replaceChildren();player.removeAttribute('src');player.removeAttribute('poster');
   const url=m.src?new URL(m.src,location.href):null;
@@ -45,6 +67,7 @@ if(playlist){
  const selectFromHash=()=>select(objects.find(o=>o.id===location.hash.slice(1))||objects[0]);
  window.addEventListener('hashchange',selectFromHash);
  selectFromHash();
+ if(continuous)playSelected();
 }
 
 
