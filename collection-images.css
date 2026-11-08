@@ -1,0 +1,18 @@
+
+/* Simple rounded collection photographs */
+.artifact-exhibition .artifact-orbit{display:none}
+.artifact-exhibition .artifact-art{padding:20px 0 14px}
+.artifact-exhibition .artifact-index{top:-16px;left:0;font-size:45px;letter-spacing:-.03em;color:#857b582b}
+.artifact-exhibition .artifact-art .object-figure{overflow:visible;margin:0}
+.artifact-exhibition .artifact-art .object-figure img,
+.artifact-exhibition .catalog-card:nth-child(even) .object-figure img{
+ width:100%;height:auto;aspect-ratio:16/9;object-fit:contain;border-radius:16px;
+ background:transparent;filter:none;box-shadow:0 12px 28px #23302812;
+ transition:transform .4s ease,box-shadow .4s ease;
+}
+.artifact-exhibition .artifact-art .object-figure figcaption{margin-top:16px}
+@media(hover:hover) and (pointer:fine){
+ .artifact-exhibition .artifact-art .object-figure img:hover{transform:translateY(-3px) scale(1.015);box-shadow:0 18px 35px #23302820}
+}
+@media(max-width:760px){.artifact-exhibition .artifact-art{padding:25px 0 12px;margin-bottom:5px}.artifact-exhibition .artifact-index{top:-12px;font-size:36px}.artifact-exhibition .artifact-art .object-figure img{border-radius:14px}}
+@media(prefers-reduced-motion:reduce){.artifact-exhibition .artifact-art .object-figure img{transition:none}.artifact-exhibition .artifact-art .object-figure img:hover{transform:none}}
