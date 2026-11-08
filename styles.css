@@ -249,3 +249,5 @@ header nav a:focus-visible,header .menu:focus-visible{outline:2px solid #8e7a46;
  header nav a[aria-current]::after{left:auto;right:14px;bottom:50%;transform:translateY(50%) rotate(45deg)}
 }
 @media(prefers-reduced-motion:reduce){header nav a{transition:none}}
+
+.utility #language{background:#eee8d9;color:#454e3f;border:1px solid #8c805566}.utility #language option{background:#f3ede0;color:#454e3f}
