@@ -353,18 +353,3 @@ header nav a:focus-visible,header .menu:focus-visible{outline-color:#f1d399}
 .ai-actions{margin-top:25px}
 .ai-actions>.ai-secondary{padding-block:7px;display:inline-block}
 @media(max-width:760px){.ai-card-copy .ai-object-preview{font-size:12px;line-height:1.95}}
-
-/* Location and return paths */
-.breadcrumbs{display:block;padding-top:30px;margin-bottom:0}
-.breadcrumbs ol{display:flex;align-items:center;flex-wrap:wrap;gap:8px 12px;list-style:none;padding:0;margin:0;color:#897d61;font-size:11px;line-height:1.8}
-.breadcrumbs li{display:flex;align-items:center;gap:12px}
-.breadcrumbs li+li::before{content:"/";color:#b4a98c}
-.breadcrumbs a:hover{color:#3d503a;text-decoration:underline;text-underline-offset:4px}
-.breadcrumbs [aria-current]{color:#3d503a}
-.breadcrumbs+.page-intro{padding-top:25px}
-.film-return{display:flex;align-items:center;flex-wrap:wrap;gap:14px 24px;padding:22px 0 4px}
-.film-return a{font-size:12px;color:#6f654d}
-.film-return .return-all-films{display:inline-flex;align-items:center;gap:10px;border:1px solid #8d815f77;border-radius:3px;padding:11px 18px;background:#fff6;color:#3d503a}
-.film-return .return-all-films:hover{background:#3d503a;color:#f3ecd9}
-.film-return a:focus-visible,.breadcrumbs a:focus-visible{outline:2px solid #9b8051;outline-offset:4px}
-@media(max-width:760px){.breadcrumbs{padding-top:25px}.breadcrumbs ol{font-size:10px;gap:6px 10px}.breadcrumbs li{gap:10px}.breadcrumbs+.page-intro{padding-top:22px}.film-return{gap:14px 20px;padding-top:18px}.film-return .return-all-films{padding:10px 14px}}
