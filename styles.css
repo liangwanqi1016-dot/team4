@@ -176,3 +176,53 @@ header nav a:focus-visible,header .menu:focus-visible{outline:2px solid #e3c58b;
  header nav.open{display:flex}
  header nav a{padding:12px 16px;font-size:14px;border:1px solid transparent}
 }
+
+/* Collection presentation inspired by paper exhibition catalogues */
+.artifact-exhibition{background:#f1ede3;color:#353d33;background-image:radial-gradient(ellipse at 5% 8%,#c6b99322,transparent 45%),radial-gradient(ellipse at 90% 55%,#c4cdbb22,transparent 50%)}
+.artifact-exhibition .page-intro{padding-top:64px;padding-bottom:32px;border-bottom:1px solid #89795833;position:relative}
+.artifact-exhibition .page-intro h1{font-family:var(--serif);font-size:clamp(38px,4.2vw,60px);letter-spacing:.12em;color:#364635;margin-bottom:16px}
+.artifact-exhibition .page-intro p{color:#79745f;max-width:620px}
+.artifact-exhibition .filter-bar{padding-top:22px;border-bottom:0;gap:12px;flex-wrap:wrap}
+.artifact-exhibition .filter-bar button{padding:8px 16px;border:1px solid transparent;border-radius:24px;font-size:12px;color:#706e5f;background:transparent}
+.artifact-exhibition .filter-bar button[aria-pressed="true"]{background:#3b4d3c;color:#f6efdd;border-color:#3b4d3c}
+.artifact-exhibition .catalog-note{font-size:11px;color:#8a826e;max-width:820px}
+.artifact-exhibition .catalog-grid{display:block}
+.artifact-exhibition .catalog-card{display:grid;grid-template-columns:minmax(0,1.2fr) minmax(0,1fr);gap:7%;padding:78px 0!important;margin:0!important;align-items:center;min-height:570px;border-bottom:1px solid #a295752f;background:transparent;transform:none;position:relative}
+.artifact-exhibition .catalog-card[hidden]{display:none}
+.artifact-exhibition .catalog-card:nth-child(even) .artifact-art{order:2}
+.artifact-exhibition .catalog-card:nth-child(even) .artifact-copy{order:1}
+.artifact-art{position:relative;isolation:isolate;padding:50px 12px 34px}
+.artifact-orbit{position:absolute;z-index:-1;width:87%;aspect-ratio:1;border:1px solid #a3946c55;border-radius:50%;top:50%;left:50%;transform:translate(-50%,-50%);pointer-events:none}
+.artifact-orbit::before,.artifact-orbit::after{content:"";position:absolute;border-radius:50%;pointer-events:none}
+.artifact-orbit::before{inset:13px;border:1px dashed #a3946c44}
+.artifact-orbit::after{inset:-13px;border:1px solid #a3946c22}
+.artifact-index{position:absolute;top:0;left:8px;font-family:Georgia,serif;font-size:80px;line-height:1;color:#8b7c5029;letter-spacing:-.06em}
+.artifact-exhibition .artifact-art .object-figure{margin:0}
+.artifact-exhibition .artifact-art .object-figure img{border-radius:80px 80px 8px 8px;aspect-ratio:16/9;object-fit:contain;background:transparent;box-shadow:0 14px 38px #53472922;transform:none;filter:saturate(.88)}
+.artifact-exhibition .artifact-art figcaption{font-size:10px;text-align:center;color:#8c8068;margin-top:17px}
+.artifact-copy{position:relative;padding:14px 0}
+.artifact-kicker{font-size:10px;letter-spacing:.2em;color:#a08b5f;margin:0 0 18px}
+.artifact-exhibition .artifact-copy .catalog-label{font-size:11px;letter-spacing:.12em;color:#857450;margin-bottom:12px}
+.artifact-exhibition .artifact-copy h2{font-family:var(--serif);font-size:clamp(25px,3vw,39px);font-weight:500;line-height:1.55;color:#354532;margin:0 0 8px}
+.artifact-exhibition .artifact-copy .korean{font-size:12px;color:#998d74;margin:0 0 26px}
+.artifact-exhibition .artifact-copy dl{display:flex;gap:32px;flex-wrap:wrap;border-block:1px solid #a396742b;padding:15px 0;margin:0 0 22px}
+.artifact-exhibition .artifact-copy dl>div{display:block;border:0;padding:0}
+.artifact-exhibition .artifact-copy dt{font-size:10px;color:#998a6d;margin-bottom:4px}
+.artifact-exhibition .artifact-copy dd{font-size:13px;margin:0;color:#505740}
+.artifact-exhibition .artifact-copy>p:not(.artifact-kicker):not(.korean){font-size:13px;line-height:2.1;color:#746e5d;margin-bottom:25px}
+.artifact-exhibition .artifact-copy .text-link{font-size:12px;color:#7d6b43;display:inline-flex;margin:0 22px 0 0}
+.artifact-watch{display:inline-flex;gap:15px;align-items:center;color:#3d503a;font-size:12px;border:1px solid #8d815f77;padding:9px 17px;border-radius:3px;background:#fff8;transition:background .2s}
+.artifact-watch:hover{background:#3d503a;color:#f7edda}
+@media(max-width:760px){
+.artifact-exhibition .page-intro{padding-top:38px}
+.artifact-exhibition .catalog-card{grid-template-columns:1fr;gap:20px;padding:45px 0!important;min-height:0}
+.artifact-exhibition .catalog-card:nth-child(even) .artifact-art,.artifact-exhibition .catalog-card:nth-child(even) .artifact-copy{order:initial}
+.artifact-art{padding:45px 12px 30px;margin-bottom:12px}
+.artifact-orbit{width:78%}
+.artifact-index{font-size:64px}
+.artifact-copy{padding:8px 8px 0}
+.artifact-exhibition .artifact-copy h2{font-size:29px}
+.artifact-exhibition .artifact-copy .korean{margin-bottom:20px}
+.artifact-exhibition .filter-bar{gap:5px}
+.artifact-exhibition .filter-bar button{padding:7px 10px}
+}
