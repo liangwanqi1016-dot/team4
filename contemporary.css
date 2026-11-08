@@ -121,3 +121,8 @@ header .brand small{font-size:7px}
 .collection-gallery .filter-bar button[aria-pressed=true]{background:#303c2b;color:#fff;border-color:#303c2b}
 @media(max-width:1000px){.collection-gallery .catalog-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media(max-width:760px){.collection-gallery .catalog-grid{grid-template-columns:1fr;gap:32px}.collection-gallery .catalog-card h2{font-size:25px}.collection-gallery .object-figure img{aspect-ratio:16/10}}
+
+/* Simple moving-image identity */
+header .seal,.footer-top .seal{font-size:0;width:34px;height:34px;min-width:34px;border-radius:50%;background:#e75e38;border:0;outline:none;display:grid;place-content:center;box-shadow:none}
+header .seal::after,.footer-top .seal::after{content:"▶";font:11px/1 Arial,sans-serif;color:#fff;margin-left:2px}
+.catalog-card[hidden]{display:none!important}
