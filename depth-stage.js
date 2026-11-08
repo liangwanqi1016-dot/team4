@@ -12,14 +12,14 @@
  let textureRequest=0,ready=false,lastTime=0;
  const vertex=`attribute vec3 position;attribute vec2 uv;uniform float aspect;uniform float imageAspect;uniform vec2 rotation;uniform float zoom;varying vec2 vUv;varying float vDepth;
  void main(){vec3 p=position;float cy=cos(rotation.y),sy=sin(rotation.y),cx=cos(rotation.x),sx=sin(rotation.x);p.x*=imageAspect;p.x+=.27;p=vec3(p.x*cy+p.z*sy,p.y,-p.x*sy+p.z*cy);p=vec3(p.x,p.y*cx-p.z*sx,p.y*sx+p.z*cx);float cover=(aspect<1.0?aspect/imageAspect*1.24:max(aspect/imageAspect,1.0)*1.22)*zoom;p*=cover;if(aspect<1.0)p.y-=.34;float distance=3.8;float perspective=distance/(distance-p.z);gl_Position=vec4(p.x*perspective/aspect,p.y*perspective,0.0,1.0);vUv=uv;vDepth=position.z;}`;
- const fragment=`precision mediump float;uniform sampler2D picture;uniform vec2 light;uniform float lit;varying vec2 vUv;varying float vDepth;void main(){vec3 color=texture2D(picture,vUv).rgb;float glow=exp(-dot((vUv-light)*vec2(1.3,1.0),(vUv-light)*vec2(1.3,1.0))*5.0);float edge=(1.0-smoothstep(.25,.9,distance(vUv,vec2(.5))));color*=mix(.68,.83+glow*.28,lit);color*=.83+edge*.17;color+=vec3(.05,.036,.015)*glow*lit;gl_FragColor=vec4(color,1.0);}`;
+ const fragment=`precision mediump float;uniform sampler2D picture;uniform vec2 light;uniform float lit;varying vec2 vUv;varying float vDepth;void main(){vec3 color=texture2D(picture,vUv).rgb;float glow=exp(-dot((vUv-light)*vec2(1.3,1.0),(vUv-light)*vec2(1.3,1.0))*5.0);float edge=(1.0-smoothstep(.25,.9,distance(vUv,vec2(.5))));color*=mix(.68,.83+glow*.28,lit);color*=.83+edge*.17;color+=vec3(.05,.036,.015)*glow*lit;float fade=smoothstep(0.0,.095,min(min(vUv.x,1.0-vUv.x),min(vUv.y,1.0-vUv.y)));gl_FragColor=vec4(color,fade);}`;
  function shader(type,source){const s=gl.createShader(type);gl.shaderSource(s,source);gl.compileShader(s);if(!gl.getShaderParameter(s,gl.COMPILE_STATUS))throw new Error('Shader compilation failed');return s;}
  try{
-  gl=canvas.getContext('webgl',{alpha:false,antialias:true,powerPreference:'low-power'});
+  gl=canvas.getContext('webgl',{alpha:true,antialias:true,powerPreference:'low-power'});
   if(!gl)throw new Error('No WebGL');
   program=gl.createProgram();gl.attachShader(program,shader(gl.VERTEX_SHADER,vertex));gl.attachShader(program,shader(gl.FRAGMENT_SHADER,fragment));gl.linkProgram(program);
   if(!gl.getProgramParameter(program,gl.LINK_STATUS))throw new Error('Shader linking failed');
-  gl.useProgram(program);buffer=gl.createBuffer();indexBuffer=gl.createBuffer();texture=gl.createTexture();
+  gl.useProgram(program);gl.enable(gl.BLEND);gl.blendFuncSeparate(gl.SRC_ALPHA,gl.ONE_MINUS_SRC_ALPHA,gl.ONE,gl.ONE_MINUS_SRC_ALPHA);buffer=gl.createBuffer();indexBuffer=gl.createBuffer();texture=gl.createTexture();
   gl.bindTexture(gl.TEXTURE_2D,texture);gl.texParameteri(gl.TEXTURE_2D,gl.TEXTURE_MIN_FILTER,gl.LINEAR);gl.texParameteri(gl.TEXTURE_2D,gl.TEXTURE_MAG_FILTER,gl.LINEAR);gl.texParameteri(gl.TEXTURE_2D,gl.TEXTURE_WRAP_S,gl.CLAMP_TO_EDGE);gl.texParameteri(gl.TEXTURE_2D,gl.TEXTURE_WRAP_T,gl.CLAMP_TO_EDGE);
   for(const name of ['aspect','imageAspect','rotation','zoom','picture','light','lit'])uniforms[name]=gl.getUniformLocation(program,name);
  }catch(error){gl=null;canvas.hidden=true;root.classList.add('depth-static');}
@@ -50,7 +50,7 @@
   const rect=canvas.getBoundingClientRect(),ratio=Math.min(devicePixelRatio||1,1.7),w=Math.max(1,Math.round(rect.width*ratio)),h=Math.max(1,Math.round(rect.height*ratio));
   if(canvas.width!==w||canvas.height!==h){canvas.width=w;canvas.height=h;gl.viewport(0,0,w,h);}
   gl.uniform1f(uniforms.aspect,w/h);gl.uniform1f(uniforms.imageAspect,imageAspect);gl.uniform2f(uniforms.rotation,rotationX,rotationY);gl.uniform1f(uniforms.zoom,zoom);gl.uniform2f(uniforms.light,lightX,lightY);gl.uniform1f(uniforms.lit,lit?1:0);gl.uniform1i(uniforms.picture,0);
-  gl.clearColor(.08,.1,.08,1);gl.clear(gl.COLOR_BUFFER_BIT);gl.drawElements(gl.TRIANGLES,indexCount,gl.UNSIGNED_SHORT,0);
+  gl.clearColor(0,0,0,0);gl.clear(gl.COLOR_BUFFER_BIT);gl.drawElements(gl.TRIANGLES,indexCount,gl.UNSIGNED_SHORT,0);
   if(Math.abs(targetX-rotationX)+Math.abs(targetY-rotationY)>.0003)schedule();
  }
  function load(index){
