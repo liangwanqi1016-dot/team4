@@ -338,3 +338,11 @@ header nav a:focus-visible,header .menu:focus-visible{outline-color:#f1d399}
  header nav a[aria-current]::after{left:8px;right:auto;top:50%;bottom:auto;width:3px;height:18px;transform:translateY(-50%);background:#e5c98c}
 }
 
+
+/* Clear AI project context at entry and at every film */
+.ai-lead strong{font-weight:600;color:#fff1cc}
+.ai-hero-disclaimer{max-width:640px;margin:18px 0 0;font-size:11px;line-height:1.8;color:#d6c8aa;letter-spacing:.025em}
+.player-disclaimer{margin:16px 0 0;padding:14px 17px;border-left:2px solid #a48b56;background:#e6decc77;color:#74694f}
+.player-disclaimer>strong{font-size:11px;font-weight:600;letter-spacing:.04em;color:#5f593f}
+.player-disclaimer>p{font-size:12px;line-height:1.85;margin:5px 0 0}
+@media(max-width:760px){.ai-hero-disclaimer{max-width:92%;font-size:10px}.ai-hero-copy{padding-bottom:100px}.player-disclaimer{padding:12px 14px}.player-disclaimer>p{font-size:11px}}
