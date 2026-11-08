@@ -66,3 +66,5 @@
 .depth-stage::after{background:linear-gradient(180deg,#0b1712e8 0%,#0b1712a1 34%,#0b17122e 59%,#0b1712ad 76%,#0b1712f5),linear-gradient(90deg,#0b171244,transparent)}
 }
 @media(prefers-reduced-motion:reduce){.depth-object,.depth-object img{transition:none}.depth-object:hover{transform:none}}
+
+@media(max-width:760px){.depth-hero{min-height:760px}.depth-copy{padding-bottom:285px}.depth-stage::after{background:linear-gradient(180deg,#0b1712f2 0%,#0b1712b0 28%,#0b17121a 49%,#0b171220 66%,#0b1712e8 84%,#0b1712fa),linear-gradient(90deg,#0b171222,transparent)}.depth-bottom{bottom:20px}.depth-help{max-width:100%}}
