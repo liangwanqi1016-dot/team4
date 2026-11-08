@@ -226,3 +226,26 @@ header nav a:focus-visible,header .menu:focus-visible{outline:2px solid #e3c58b;
 .artifact-exhibition .filter-bar{gap:5px}
 .artifact-exhibition .filter-bar button{padding:7px 10px}
 }
+
+/* Paper-and-bronze exhibition navigation */
+.utility{background:#dcd5c5;color:#5a5e4c;border-bottom:1px solid #8e80582b}
+.utility a{color:#5d604e}
+.utility select{color:#454e3f;border-color:#8c805544;background:#f5f0e6}
+header{color:#3d4938;background:linear-gradient(110deg,#eee8d9f5,#f4f0e7ed 48%,#e7e1d2f5);border-bottom:1px solid #a1946c66;box-shadow:0 6px 24px #4b422412;backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px)}
+header::after{content:"";position:absolute;height:1px;left:24px;right:24px;bottom:4px;background:linear-gradient(90deg,transparent,#a6976c44 20%,#a6976c44 80%,transparent);pointer-events:none}
+header .brand strong{color:#3c4837;font-weight:500;letter-spacing:.1em}
+header .brand small{color:#8a8065;letter-spacing:.21em}
+header .seal{border:1px solid #8b7b4e88;color:#7d6d42;background:#e1d7bc33;outline:1px solid #a8996c33;outline-offset:3px}
+header nav{gap:6px}
+header nav a{position:relative;color:#6b6b55;border-radius:3px;border:1px solid transparent;background:transparent;padding:10px 17px;letter-spacing:.05em}
+header nav a:hover{color:#3a4e37;border-color:#a797663d;background:#e0d7be44}
+header nav a[aria-current]{color:#364b32;border-color:#a2936266;background:#d6ccb044;box-shadow:inset 0 0 0 3px #f3eddf,inset 0 0 0 4px #a2936226}
+header nav a[aria-current]::after{content:"";position:absolute;left:50%;bottom:-5px;width:5px;height:5px;background:#9e8b55;transform:translateX(-50%) rotate(45deg);border:1px solid #f1eadb}
+header .menu{color:#566044;border-color:#a6976a77;background:#e5ddc955;border-radius:3px}
+header nav a:focus-visible,header .menu:focus-visible{outline:2px solid #8e7a46;outline-offset:4px}
+@media(max-width:1200px){
+ header nav{background:#f0ebdffb;border-bottom:1px solid #a1946c66;box-shadow:0 16px 24px #4b422418;gap:8px}
+ header nav a{padding:12px 18px}
+ header nav a[aria-current]::after{left:auto;right:14px;bottom:50%;transform:translateY(50%) rotate(45deg)}
+}
+@media(prefers-reduced-motion:reduce){header nav a{transition:none}}
