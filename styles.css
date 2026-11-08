@@ -337,3 +337,6 @@ header nav a:focus-visible,header .menu:focus-visible{outline-color:#f1d399}
  header nav a[aria-current]{background:#f0d6a00c;border:1px solid #e4c68b44}
  header nav a[aria-current]::after{left:8px;right:auto;top:50%;bottom:auto;width:3px;height:18px;transform:translateY(-50%);background:#e5c98c}
 }
+
+/* A slightly deeper hand-cut masthead edge */
+header::after{height:15px;bottom:-14px;clip-path:polygon(0 0,100% 0,100% 46%,97% 24%,94% 85%,91% 36%,87% 68%,84% 22%,80% 82%,76% 42%,73% 92%,69% 32%,65% 70%,61% 18%,57% 84%,53% 44%,49% 94%,45% 29%,41% 71%,37% 16%,33% 78%,29% 34%,25% 90%,21% 27%,17% 69%,13% 18%,9% 83%,5% 30%,0 82%)}
