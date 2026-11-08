@@ -346,3 +346,10 @@ header nav a:focus-visible,header .menu:focus-visible{outline-color:#f1d399}
 .player-disclaimer>strong{font-size:11px;font-weight:600;letter-spacing:.04em;color:#5f593f}
 .player-disclaimer>p{font-size:12px;line-height:1.85;margin:5px 0 0}
 @media(max-width:760px){.ai-hero-disclaimer{max-width:92%;font-size:10px}.ai-hero-copy{padding-bottom:100px}.player-disclaimer{padding:12px 14px}.player-disclaimer>p{font-size:11px}}
+
+/* Object context previews on the film cards */
+.ai-card-copy .ai-card-theme{font-size:13px;color:#8a7954;margin-bottom:12px}
+.ai-card-copy .ai-object-preview{font-size:13px;line-height:1.95;color:#726e5e;margin:0;max-width:46em}
+.ai-actions{margin-top:25px}
+.ai-actions>.ai-secondary{padding-block:7px;display:inline-block}
+@media(max-width:760px){.ai-card-copy .ai-object-preview{font-size:12px;line-height:1.95}}
