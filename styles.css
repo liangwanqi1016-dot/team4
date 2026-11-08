@@ -103,3 +103,30 @@ html[lang=en] .anchor-nav a {white-space:normal}
 .ai-still::after{display:none}
 .ai-film-card:hover,.catalog-card:hover,.exhibition-image:hover img,.ai-primary:hover,.ai-film-card:hover .ai-play{transform:none}
 }
+
+/* Hero watch button only */
+.ai-actions>.ai-primary{
+ position:relative;isolation:isolate;overflow:hidden;display:inline-flex;align-items:center;justify-content:center;
+ padding:14px 25px;border:1px solid transparent;border-radius:14px;
+ color:#ffedc8;background:linear-gradient(135deg,#243c30ee,#111f19f5) padding-box,linear-gradient(115deg,#f1d69b,#81623c 38%,#fff0bf 65%,#ac8951) border-box;
+ box-shadow:inset 0 1px 0 #fff2,0 5px 22px #0004,0 0 18px #dfbc7020;
+ backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);
+ text-shadow:0 0 16px #ebc57744;letter-spacing:.035em;
+ transition:transform .25s ease,box-shadow .35s ease,color .25s ease;
+}
+.ai-actions>.ai-primary::before{
+ content:"";position:absolute;inset:-40% -70%;z-index:-1;pointer-events:none;
+ background:linear-gradient(110deg,transparent 40%,#f8dfa733 49%,#fff4d866 50%,#f8dfa722 53%,transparent 62%);
+ transform:translateX(-50%);animation:watch-button-shimmer 5.5s ease-in-out 3;
+}
+.ai-actions>.ai-primary:hover,.ai-actions>.ai-primary:focus-visible{
+ color:#fff7e5;transform:translateY(-2px);
+ box-shadow:inset 0 1px 0 #fff3,0 8px 26px #0005,0 0 24px #e5bc6845,0 0 0 3px #d9b36b12;
+}
+.ai-actions>.ai-primary:active{transform:translateY(0) scale(.98)}
+@keyframes watch-button-shimmer{0%,35%{transform:translateX(-50%)}80%,100%{transform:translateX(50%)}}
+@media(prefers-reduced-motion:reduce){
+ .ai-actions>.ai-primary{transition:none}
+ .ai-actions>.ai-primary::before{animation:none;opacity:.25}
+ .ai-actions>.ai-primary:hover,.ai-actions>.ai-primary:focus-visible,.ai-actions>.ai-primary:active{transform:none}
+}
