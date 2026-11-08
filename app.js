@@ -35,6 +35,7 @@ if(playlist){
   waiting.querySelector('p').textContent=tr('影像筹备中');
   document.querySelector('#wait-title').textContent=o.name;
   document.querySelector('#film-title').textContent=o.name;
+  const filmCrumb=document.querySelector('#breadcrumb-film');if(filmCrumb)filmCrumb.textContent=o.name;
   document.querySelector('#film-theme').textContent=t.name;
   document.querySelector('#film-description').textContent=o.text;
   document.querySelector('#film-state').textContent=tr(url?'已发布':'待发布');
