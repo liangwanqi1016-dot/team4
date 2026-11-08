@@ -130,3 +130,16 @@ html[lang=en] .anchor-nav a {white-space:normal}
  .ai-actions>.ai-primary::before{animation:none;opacity:.25}
  .ai-actions>.ai-primary:hover,.ai-actions>.ai-primary:focus-visible,.ai-actions>.ai-primary:active{transform:none}
 }
+
+/* Brighter amber tone for the homepage watch button */
+.ai-actions>.ai-primary{
+ color:#211609;
+ background:linear-gradient(125deg,#ffe09a 0%,#ffb83e 48%,#ff872a 100%) padding-box,linear-gradient(115deg,#fff0bb,#ffb943,#ffe7a7) border-box;
+ box-shadow:inset 0 1px 0 #fff8,0 6px 24px #ff9a363d,0 0 20px #ffc15a25;
+ text-shadow:none;
+}
+.ai-actions>.ai-primary::before{background:linear-gradient(110deg,transparent 40%,#fff4 49%,#fff9 50%,#fff3 53%,transparent 62%)}
+.ai-actions>.ai-primary:hover,.ai-actions>.ai-primary:focus-visible{
+ color:#211609;
+ box-shadow:inset 0 1px 0 #fffa,0 8px 30px #ff9c4c66,0 0 0 3px #ffc36533;
+}
