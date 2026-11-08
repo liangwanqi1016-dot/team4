@@ -9,7 +9,7 @@ const el=(tag,text,cls)=>{const n=document.createElement(tag);if(text)n.textCont
 document.querySelectorAll('.object-open').forEach(button=>button.addEventListener('click',()=>{
  const o=objects.find(x=>x.id===button.dataset.object);if(!o)return;
  const t=themes.find(x=>x.id===o.theme);content.replaceChildren(el('p',t.name+' / '+tr('馆藏选粹'),'eyebrow'),el('h2',o.name),el('p',o.ko,'korean'));
- const figure=el('figure',null,'object-figure');const image=el('img');image.src='assets/objects/'+o.id+'.jpg';image.alt=o.name;image.width=960;image.height=540;figure.append(image,el('figcaption',({'en':'Still from the supplied AI film','ko':'제공된 AI 영상의 장면','ja':'提供されたAI映像の一場面'})[document.documentElement.lang]||'用户提供的 AI 影片截帧'));content.append(figure);
+ const figure=el('figure',null,'object-figure');const image=el('img');image.src='assets/objects/'+o.id+'.jpg';image.alt=o.name;image.width=960;image.height=540;figure.append(image);content.append(figure);
  const dl=el('dl');[['年代',o.date],['材质',o.material],['尺寸 / 补充',o.size]].forEach(([k,v])=>{const row=el('div');row.append(el('dt',tr(k)),el('dd',v));dl.append(row)});
  content.append(dl,el('p',o.text,'body-text'),el('p',o.detail,'body-text'),el('p',o.note,'object-note'));
  const a=el('a',tr('馆刊原始记录 ↗'),'text-link');a.href=source;a.target='_blank';a.rel='noreferrer';content.append(a);
